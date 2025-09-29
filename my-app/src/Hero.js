@@ -6,7 +6,7 @@ function Hero(){
         <button>Reserve a table</button>
         {/* add image here*/}
       </section>
-    )
+    );
 }
 
 export default Hero;

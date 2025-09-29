@@ -1,38 +1,94 @@
+/* General App container */
 .App {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header, main, footer */
+  min-height: 100vh;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  font-family: Arial, sans-serif;
+}
+
+/* Header section */
+header {
+  grid-area: header;
+  background-color: #f4ce14; /* Little Lemon color */
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Navigation inside header */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Main content */
+main {
+  grid-area: main;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* Hero section */
+.hero {
+  grid-column: 1 / -1;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Cards or highlights container */
+.highlights,
+.testimonials {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* Footer section */
+footer {
+  grid-area: footer;
+  background-color: #333;
   color: white;
+  text-align: center;
+  padding: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+/* Responsive adjustments for small screens */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .highlights,
+  .testimonials {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

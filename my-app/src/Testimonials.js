@@ -1,6 +1,6 @@
-function Testimonails(){
+function Testimonials(){
     return(
-        <section className="testimonials">
+        <section className="Testimonials">
             <h2>What our Customers say</h2>
             <article>
                 <p>"Amazing food and service! Highly recommend."</p>
@@ -11,7 +11,7 @@ function Testimonails(){
                 <p>- Mark S.</p>
             </article>
         </section>
-    )
+    );
 }
 
 export default Testimonials;

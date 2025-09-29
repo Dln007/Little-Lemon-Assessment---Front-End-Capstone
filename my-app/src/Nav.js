@@ -1,6 +1,6 @@
 function Nav(){
     return(
-        <Nav>
+        <nav>
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
@@ -9,8 +9,8 @@ function Nav(){
             <li><a href="/orderOnline">Order Online</a></li>
             <li><a href="/logIn">Login</a></li>
         </ul>
-        </Nav>
-    )
+        </nav>
+    );
 }
 
 export default Nav;

@@ -7,7 +7,7 @@ function About(){
                 Our mission is to provide a welcoming experience for every guest.
             </p>
         </section>
-    )
+    );
 }
 
 export default About;

@@ -17,7 +17,7 @@ function Highlights(){
             </article>
         </div>
     </section>
- )
+ );
 }
 
 export default Highlights;
