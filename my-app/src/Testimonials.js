@@ -1,6 +1,6 @@
 function Testimonials(){
     return(
-        <section className="Testimonials">
+        <section className="testimonials">
             <h2>What our Customers say</h2>
             <article>
                 <p>"Amazing food and service! Highly recommend."</p>

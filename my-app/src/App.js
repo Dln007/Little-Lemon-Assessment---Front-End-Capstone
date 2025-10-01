@@ -8,20 +8,20 @@ import Footer from './Footer';
 
 function App(){
   return(
-    <>
+    <div className='App'>
     <header>
       <Nav />
-      <Hero />
     </header>
 
     <main>
+      <Hero />
       <Highlights />
       <Testimonials />
       <About />
     </main>
 
     <Footer />
-    </>
+    </div>
   )
 }
 

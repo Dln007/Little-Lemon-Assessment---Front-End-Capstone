@@ -1,4 +1,3 @@
-/* General App container */
 .App {
   display: grid;
   grid-template-rows: auto 1fr auto; /* header, main, footer */
@@ -10,17 +9,15 @@
   font-family: Arial, sans-serif;
 }
 
-/* Header section */
 header {
   grid-area: header;
-  background-color: #f4ce14; /* Little Lemon color */
+  background-color: #f4ce14;
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Navigation inside header */
 .nav-links {
   display: flex;
   gap: 1rem;
@@ -35,31 +32,19 @@ header {
   font-weight: bold;
 }
 
-/* Main content */
 main {
   grid-area: main;
   padding: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
 }
 
-/* Hero section */
 .hero {
   grid-column: 1 / -1;
   text-align: center;
 }
 
-/* Cards or highlights container */
-.highlights,
-.testimonials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-/* Footer section */
 footer {
   grid-area: footer;
   background-color: #333;
@@ -89,6 +74,50 @@ footer {
   .testimonials {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+/* ===== MOBILE FIRST (default) ===== */
+.highlights,
+.testimonials,
+.about {
+  display: block;
+  margin: 1rem 0;
+}
+
+/* Space between items when stacked */
+.highlights > div,
+.testimonials > div,
+.about > div {
+  margin-bottom: 1rem;
+}
+
+/* ===== DESKTOP (>= 768px) ===== */
+@media (min-width: 768px) {
+
+  .highlights .highlight-items {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .highlights > div,
+  .testimonials > div,
+  .about > div {
+    margin-bottom: 0;
   }
 }
 
