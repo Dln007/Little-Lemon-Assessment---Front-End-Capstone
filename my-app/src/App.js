@@ -1,6 +1,5 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom"
-import { act, useReducer } from 'react';
 
 import Nav from './Nav';
 import Footer from './Footer';
@@ -8,14 +7,12 @@ import Footer from './Footer';
 import HomePage from './HomePage';
 import BookingPage from './BookingPage';
 
-function App(){
-
-  function initializeTimes(){
+export function initializeTimes(){
     return ["5:00pm", "6:00pm", "7:00pm", "8:00pm", "9:00pm", "10:00pm"];
   }
 
-  function updateTimes(state, action){
-    if (action.type === "update-times") {
+  export function updateTimes(state, action){
+    if (action.type === "update_times") {
       console.log ("Date selected:", action.date)
 
       // To Do: Replace with real logic for available items
@@ -24,6 +21,8 @@ function App(){
     }
     return state;
   }
+
+function App(){
 
   const [availableTimes, dispatch] = useReducer (updateTimes, [], initializeTimes)
 
