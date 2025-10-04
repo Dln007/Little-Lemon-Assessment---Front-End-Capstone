@@ -1,10 +1,11 @@
 import BookingForm from "./BookingForm";
 
-function BookingPage(){
+function BookingPage({availableTimes, dispatch}){
+
     return(
         <section>
             <h1>Reserve a Table</h1>
-            <BookingForm />
+            <BookingForm availableTimes={availableTimes} dispatch={dispatch}/>
         </section>
     )
 }
