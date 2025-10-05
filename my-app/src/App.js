@@ -22,6 +22,18 @@ export function initializeTimes(){
     return state;
   }
 
+  const initializeTimes = () => {
+    const today = new Date();
+    return fetchAPI (today);
+  }
+
+  const updateTimes = (state, action) => {
+    if (action.type === 'UPDATE_TIMES' ) {
+      return fetchAPI (new Date (action.date));
+    }
+    return state;
+  }
+
 function App(){
 
   const [availableTimes, dispatch] = useReducer (updateTimes, [], initializeTimes)

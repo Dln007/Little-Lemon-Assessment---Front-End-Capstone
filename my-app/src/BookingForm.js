@@ -19,7 +19,7 @@ function BookingForm ({availableTimes, dispatch}){
             <input type="date" id="res-date" value={date} onChange={(e) => {
                 const selectedDate = e.target.value;
                 setDate(selectedDate);
-                dispatch ({type: "update_items", date: selectedDate});
+                dispatch ({type: "UPDATE_TIMES", date: selectedDate});
             }} required/>
 
             <label htmlFor="res-time">Choose a Time</label>
