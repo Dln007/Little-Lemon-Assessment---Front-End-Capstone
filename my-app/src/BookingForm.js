@@ -1,49 +1,45 @@
 import { useState } from "react";
 
-function BookingForm ({availableTimes, dispatch}){
+import BookingForm from "./BookingForm";
 
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-    const [guests, setGuests] = useState(1);
-    const [occasion, setOccasion] = useState("Birthday");
+function BookingPage({ availableTimes, dispatch }) {
+  // Dummy booking data for exercise
+  const bookingData = [
+    { date: "2025-10-15", time: "5:00pm", guests: 2, occasion: "Birthday" },
+    { date: "2025-10-15", time: "6:00pm", guests: 4, occasion: "Anniversary" },
+    { date: "2025-10-15", time: "7:00pm", guests: 3, occasion: "Engagement" },
+  ];
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log({date, time, guests, occasion});
-        alert(`Reservation has been made: ${guests} guests on ${date} at ${time} for ${occasion}`);
-    };
+  return (
+    <section>
+      <h1>Reserve a Table</h1>
+      
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
 
-    return (
-        <form onSubmit={handleSubmit} style={{ display: "grid", maxWidth: "320px", gap: "12px"}}>
-            <label htmlFor="res-date">Choose Date</label>
-            <input type="date" id="res-date" value={date} onChange={(e) => {
-                const selectedDate = e.target.value;
-                setDate(selectedDate);
-                dispatch ({type: "UPDATE_TIMES", date: selectedDate});
-            }} required/>
-
-            <label htmlFor="res-time">Choose a Time</label>
-            <select id="res-time" value={time} onChange={(e) => setTime (e.target.value)} required>
-                <option value={""}>Select a time</option>
-                {availableTimes.map((t) => (
-                    <option key={t} value={t}>{t}</option>
-                ))}
-            </select>
-
-            <label htmlFor="guests">Number of Guests</label>
-            <input type="number" id="guests" min={1} max={10} value={guests} onChange={(e) => setGuests(e.target.value)} required />
-
-            <label htmlFor="occasion">Occasion</label>
-            <select id="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)} required>
-                <option>Birthday</option>
-                <option>Anniversary</option>
-                <option>Engagement</option>
-                <option>Wedding</option>
-            </select>
-
-            <button type="submit">Make Your Reservation!</button>
-        </form>
-    )
+     
+      <h2>Existing Bookings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Guests</th>
+            <th>Occasion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bookingData.map((booking, index) => (
+            <tr key={index}>
+              <td>{booking.date}</td>
+              <td>{booking.time}</td>
+              <td>{booking.guests}</td>
+              <td>{booking.occasion}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  );
 }
 
-export default BookingForm;
+export default BookingPage;
