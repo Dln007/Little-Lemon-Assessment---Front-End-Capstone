@@ -1,14 +1,16 @@
 /* global fetchAPI, submitAPI */
 import { useReducer } from 'react';
+import{fetchAPI, submitAPI} from  "./api"
 
 import './App.css';
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {BrowserRouter, Routes, Route, useNavigate} from "react-router-dom"
 
 import Nav from './Nav';
 import Footer from './Footer';
 
 import HomePage from './HomePage';
 import BookingPage from './BookingPage';
+import ConfirmedBooking from './ConfirmedBooking';
 
   const initializeTimes = () => {
     const today = new Date();
@@ -25,9 +27,16 @@ import BookingPage from './BookingPage';
 function App(){
 
   const [availableTimes, dispatch] = useReducer (updateTimes, [], initializeTimes)
+  const navigate = useNavigate();
+
+  function submitForm (formData) {
+    const success =  window.submitAPI(formData)
+    if (success) {
+      navigate ("/confirmed");
+    };
+  }
 
   return(
-    <BrowserRouter>
     <div className='App'>
       <header>
         <Nav />
@@ -36,16 +45,16 @@ function App(){
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/Booking" element={<BookingPage availableTimes = {availableTimes}  dispatch = {dispatch} />} />
+          <Route path="/Booking" element={<BookingPage availableTimes = {availableTimes}  dispatch = {dispatch} submitForm = {submitForm} />} />
+          <Route path="/confirmed" element={<ConfirmedBooking />} />
         </Routes>
       </main>
 
       <Footer />
 
     </div>
-    </BrowserRouter>
   )
 }
 
-
 export default App;
+export {initializeTimes, updateTimes};

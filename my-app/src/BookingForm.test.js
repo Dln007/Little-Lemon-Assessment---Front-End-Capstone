@@ -1,12 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from './BookingForm';
 
-beforeAll(() => { 
-    window.alert = jest.fn();
-});
-
 test('Booking form can be submitted', () => {
-    render(<BookingForm availableTimes={["5:00pm"]} dispatch={() => {}} />)
+    const mockSubmit = jest.fn();
+    render(<BookingForm availableTimes={["5:00pm"]} dispatch={() => {}} submitForm={mockSubmit}/>)
 
 
 fireEvent.change(screen.getByLabelText(/Choose date/i), {
@@ -14,7 +11,7 @@ fireEvent.change(screen.getByLabelText(/Choose date/i), {
 });
 
 fireEvent.change(screen.getByLabelText(/choose a time/i), {
-    target: {value: "5:00pm"},
+    target: {value: "17:00"},
 });
 
 fireEvent.change(screen.getByLabelText(/number of guests/i), {
@@ -28,11 +25,11 @@ fireEvent.change(screen.getByLabelText(/occasion/i), {
 fireEvent.click(
     screen.getByRole("button", {name: /make your reservation/i})
 );
-expect(window.alert).toBeCalled();
+expect(mockSubmit).toBeCalled();
 });
 
 test('Renders the Choose a time button', () => {
-    render(<BookingForm availableTimes={[]} dispatch={() => {}} />);
+    render(<BookingForm availableTimes={[]} dispatch={() => {}} submitForm={() => {}} />);
     const headingElement = screen.getByText("Choose a Time");
     expect(headingElement).toBeInTheDocument();
 });

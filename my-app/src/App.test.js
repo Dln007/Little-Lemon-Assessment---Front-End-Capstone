@@ -1,13 +1,43 @@
-import { initializeTimes, updateTimes } from "./App";
+// App.test.js
+import { render, screen } from "@testing-library/react";
+import App, { initializeTimes, updateTimes } from "./App";
+import { MemoryRouter } from "react-router-dom";
 
-test('initializeTimes returns the correct times array', () => {
-  const times = initializeTimes();
-  expect(times).toEqual(["5:00pm", "6:00pm", "7:00pm", "8:00pm", "9:00pm", "10:00pm"]);
- });
+test("renders the App component without crashing", () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+  const linkElement = screen.getByText(/home/i);
+  expect(linkElement).toBeInTheDocument();
+});
 
- test ('updateTimes  returns the same state it was passed in', () => {
-  const state = ["5:00pm", "6:00pm"]
-  const action = {type: "update_times", date: "2025-10-17"};
-  const newState = updateTimes(state, action);
-  expect(newState).toEqual(state);
- });
+test("initializeTimes returns non-empty array from fetchAPI", () => {
+  const fetchSpy = jest
+    .spyOn(window, "fetchAPI")
+    .mockReturnValue(["17:00", "18:00", "19:00"]);
+
+  const result = initializeTimes();
+
+  expect(result.length).toBeGreaterThan(0);
+  expect(result).toEqual(["17:00", "18:00", "19:00"]);
+
+  fetchSpy.mockRestore();
+});
+
+test("updateTimes returns times for the given date", () => {
+  const fetchSpy = jest
+    .spyOn(window, "fetchAPI")
+    .mockReturnValue(["20:00", "21:00"]);
+
+  const mockDate = new Date("2025-10-17");
+  const result = updateTimes([], { type: "UPDATE_TIMES", date: mockDate });
+
+  expect(result).toEqual(["20:00", "21:00"]);
+
+  fetchSpy.mockRestore();
+});
+
+
+
