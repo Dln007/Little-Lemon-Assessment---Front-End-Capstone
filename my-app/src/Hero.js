@@ -6,7 +6,7 @@ function Hero(){
         <h1>Welcome to Little Lemon!</h1>
         <p>Reserve a table and enjoy our delicious meals!</p>
         <Link to="/booking">
-        <button>Reserve a table</button>
+        <button aria-label="Reserve a table">Reserve A Table</button>
         </Link>
         {/* add image here*/}
       </section>

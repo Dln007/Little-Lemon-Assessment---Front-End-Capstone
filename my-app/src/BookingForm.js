@@ -55,14 +55,14 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
 
       <label htmlFor="occasion">Occasion</label>
       <select id="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)} required>
-        <option value="">Select An Occasion</option>
+        <option aria-label="Select An Occasion" value="">Select An Occasion</option>
         <option>Birthday</option>
         <option>Anniversary</option>
         <option>Engagement</option>
         <option>Wedding</option>
       </select>
 
-      <button type="submit" disabled={!isFormValid}>Make Your Reservation!</button>
+      <button aria-label="Make Your Reservation!" type="submit" disabled={!isFormValid}>Make Your Reservation!</button>
     </form>
   );
 }
