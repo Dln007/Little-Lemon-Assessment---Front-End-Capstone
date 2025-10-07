@@ -53,6 +53,14 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         required
       />
 
+      {guests < 1 && ( 
+        <p role="alert" style={{color: "red", fontSize: "0.9rem"}}>At least 1 guest is required.</p>
+      )}
+
+      {guests > 10 && (
+        <p role="alert" style={{color: "red", fontSize: "0.9rem"}}>No more than 10 guests permitted.</p>
+      )}
+
       <label htmlFor="occasion">Occasion</label>
       <select id="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)} required>
         <option aria-label="Select An Occasion" value="">Select An Occasion</option>
@@ -61,6 +69,10 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         <option>Engagement</option>
         <option>Wedding</option>
       </select>
+
+      {occasion === "" && (
+        <p role="alert" style={{color: "red", fontSize: "0.9rem"}}>Please select an occasion</p>
+      )}
 
       <button aria-label="Make Your Reservation!" type="submit" disabled={!isFormValid}>Make Your Reservation!</button>
     </form>
