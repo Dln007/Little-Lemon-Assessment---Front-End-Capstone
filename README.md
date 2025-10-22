@@ -25,3 +25,6 @@ Clone the repository:
 bash
 git clone <your-repo-url>
 cd little-lemon-assessment
+
+## View Code Under:
+my-app/src
